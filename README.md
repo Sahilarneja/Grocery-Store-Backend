@@ -5,7 +5,8 @@ This is the README file for the Grocery Backend Application, which is a Node.js-
 Usage:<br>
 -Admins can perform CRUD operations on products and categories.<br>
 -Users can view products, add to the cart, and place orders.<br>
--User & Admin registration and authentication are handled.<br>
+- User and admin registration and authentication using JWT for enhanced security.<br>
+
 
 
 Acknowledgments:<br>
