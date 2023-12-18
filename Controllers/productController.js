@@ -16,31 +16,42 @@ const GetProductsController = async (req, res) => {
   }
 };
 
-const AddProductsController=async (request, response) => {
-  const { productName, productCategory, productPrice, productDesc } = request.body;
-    console.log(request.body);
+const AddProductsController = async (req, res) => {
   try {
-    const uuid=v4();
-    const productResponse=await productModel.create({
-      productId:uuid,
-      productName:productName,
-      productCategory:productCategory,
-      productPrice:productPrice,
+    const { productName, productCategory, productPrice, productDesc } = req.body;
+
+    console.log('Received request body:', req.body);
+
+    if (!productName || !productPrice) {
+      console.log('Validation failed. Missing required fields.');
+      return res.status(400).json({ error: 'productName and productPrice are required fields' });
+    }
+
+    const uuid = v4();
+    const productResponse = await productModel.create({
+      productId: uuid,
+      productName: productName,
+      productCategory: productCategory,
+      productPrice: productPrice,
       productDesc: productDesc
     });
-    if(productResponse && productResponse._id){
-      response.status(201).json({message:"Product Created Successfully",data:productResponse});
-    }else{
-      response.status(404).json({message:"Product Not created"});
+
+    if (productResponse && productResponse._id) {
+      console.log('Product created successfully:', productResponse);
+      return res.status(201).json({ message: 'Product Created Successfully', data: productResponse });
+    } else {
+      console.log('Product creation failed.');
+      return res.status(404).json({ message: 'Product Not created' });
     }
-  } 
-  catch (error) {
-    console.log("error creating product",error);
-    response.status(500).json({message:"Internal server error"});
-    
+  } catch (error) {
+    console.error('Error creating product', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+
 const UpdateProductsController = async (req, res) => {
+  console.log(req.body);
   const productId = req.params.id;
   const { productName, productCategory, productPrice, productDesc } = req.body;
   try {

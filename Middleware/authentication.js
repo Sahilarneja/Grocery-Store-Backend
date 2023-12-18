@@ -16,6 +16,7 @@ function authenticateJWT(req, res, next) {
           res.status(403).json({ message: "Forbidden: Invalid Token" });
         } else {
           req.user = authData.user;
+          console.log('Authenticated');
           next();
         }
       });
@@ -28,4 +29,4 @@ function authenticateJWT(req, res, next) {
   }
 }
 
-module.exports = {authenticateJWT};
+module.exports = authenticateJWT;

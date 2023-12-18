@@ -1,7 +1,7 @@
 {
   "name": "grocery_project",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the README file for the Grocery Backend Application, which is a Node.js-based web application designed for managing grocery-related operations. This application provides CRUD functionality for both admins and users, along with user registration and authentication using bcrypt for password hashing.<br>",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^7.6.2",
+    "mongoose": "^7.6.7",
     "routes": "^2.1.0",
     "uuid": "^9.0.1"
   }
